@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package media;
+
+option go_package = "media.v1;mediav1";
+
+service Media {
+    rpc GetUploadURL (GetURLRequest) returns (GetURLResponse);
+}
+
+message GetURLRequest {
+  string filename = 1;
+}
+
+message GetURLResponse {
+    string url = 1;
+    string filekey = 2;
+    string type = 3;
+}
+
+
