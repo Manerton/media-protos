@@ -1,3 +1,3 @@
-module github.com/your-username/my-project/api/proto
+module github.com/Manerton/media-protos
 
 go 1.26.5
