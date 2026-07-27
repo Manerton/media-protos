@@ -6,6 +6,7 @@ option go_package = "media.v1;mediav1";
 
 service Media {
     rpc GetUploadURL (GetURLRequest) returns (GetURLResponse);
+    rpc CheckFile (CheckFileRequest) returns (CheckFileResponse);
 }
 
 message GetURLRequest {
@@ -16,6 +17,16 @@ message GetURLResponse {
     string url = 1;
     string filekey = 2;
     string type = 3;
+}
+
+message CheckFileRequest {
+    string filekey = 1;
+    string type = 2;
+}
+
+message CheckFileResponse {
+    bool isValid  = 1;
+    bool exist = 2;
 }
 
 

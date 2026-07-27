@@ -125,6 +125,110 @@ func (x *GetURLResponse) GetType() string {
 	return ""
 }
 
+type CheckFileRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Filekey       string                 `protobuf:"bytes,1,opt,name=filekey,proto3" json:"filekey,omitempty"`
+	Type          string                 `protobuf:"bytes,2,opt,name=type,proto3" json:"type,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CheckFileRequest) Reset() {
+	*x = CheckFileRequest{}
+	mi := &file_media_media_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CheckFileRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CheckFileRequest) ProtoMessage() {}
+
+func (x *CheckFileRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_media_media_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CheckFileRequest.ProtoReflect.Descriptor instead.
+func (*CheckFileRequest) Descriptor() ([]byte, []int) {
+	return file_media_media_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *CheckFileRequest) GetFilekey() string {
+	if x != nil {
+		return x.Filekey
+	}
+	return ""
+}
+
+func (x *CheckFileRequest) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+type CheckFileResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	IsValid       bool                   `protobuf:"varint,1,opt,name=isValid,proto3" json:"isValid,omitempty"`
+	Exist         bool                   `protobuf:"varint,2,opt,name=exist,proto3" json:"exist,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CheckFileResponse) Reset() {
+	*x = CheckFileResponse{}
+	mi := &file_media_media_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CheckFileResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CheckFileResponse) ProtoMessage() {}
+
+func (x *CheckFileResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_media_media_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CheckFileResponse.ProtoReflect.Descriptor instead.
+func (*CheckFileResponse) Descriptor() ([]byte, []int) {
+	return file_media_media_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *CheckFileResponse) GetIsValid() bool {
+	if x != nil {
+		return x.IsValid
+	}
+	return false
+}
+
+func (x *CheckFileResponse) GetExist() bool {
+	if x != nil {
+		return x.Exist
+	}
+	return false
+}
+
 var File_media_media_proto protoreflect.FileDescriptor
 
 const file_media_media_proto_rawDesc = "" +
@@ -135,9 +239,16 @@ const file_media_media_proto_rawDesc = "" +
 	"\x0eGetURLResponse\x12\x10\n" +
 	"\x03url\x18\x01 \x01(\tR\x03url\x12\x18\n" +
 	"\afilekey\x18\x02 \x01(\tR\afilekey\x12\x12\n" +
-	"\x04type\x18\x03 \x01(\tR\x04type2D\n" +
+	"\x04type\x18\x03 \x01(\tR\x04type\"@\n" +
+	"\x10CheckFileRequest\x12\x18\n" +
+	"\afilekey\x18\x01 \x01(\tR\afilekey\x12\x12\n" +
+	"\x04type\x18\x02 \x01(\tR\x04type\"C\n" +
+	"\x11CheckFileResponse\x12\x18\n" +
+	"\aisValid\x18\x01 \x01(\bR\aisValid\x12\x14\n" +
+	"\x05exist\x18\x02 \x01(\bR\x05exist2\x84\x01\n" +
 	"\x05Media\x12;\n" +
-	"\fGetUploadURL\x12\x14.media.GetURLRequest\x1a\x15.media.GetURLResponseB\x12Z\x10media.v1;mediav1b\x06proto3"
+	"\fGetUploadURL\x12\x14.media.GetURLRequest\x1a\x15.media.GetURLResponse\x12>\n" +
+	"\tCheckFile\x12\x17.media.CheckFileRequest\x1a\x18.media.CheckFileResponseB\x12Z\x10media.v1;mediav1b\x06proto3"
 
 var (
 	file_media_media_proto_rawDescOnce sync.Once
@@ -151,16 +262,20 @@ func file_media_media_proto_rawDescGZIP() []byte {
 	return file_media_media_proto_rawDescData
 }
 
-var file_media_media_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_media_media_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_media_media_proto_goTypes = []any{
-	(*GetURLRequest)(nil),  // 0: media.GetURLRequest
-	(*GetURLResponse)(nil), // 1: media.GetURLResponse
+	(*GetURLRequest)(nil),     // 0: media.GetURLRequest
+	(*GetURLResponse)(nil),    // 1: media.GetURLResponse
+	(*CheckFileRequest)(nil),  // 2: media.CheckFileRequest
+	(*CheckFileResponse)(nil), // 3: media.CheckFileResponse
 }
 var file_media_media_proto_depIdxs = []int32{
 	0, // 0: media.Media.GetUploadURL:input_type -> media.GetURLRequest
-	1, // 1: media.Media.GetUploadURL:output_type -> media.GetURLResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
+	2, // 1: media.Media.CheckFile:input_type -> media.CheckFileRequest
+	1, // 2: media.Media.GetUploadURL:output_type -> media.GetURLResponse
+	3, // 3: media.Media.CheckFile:output_type -> media.CheckFileResponse
+	2, // [2:4] is the sub-list for method output_type
+	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -177,7 +292,7 @@ func file_media_media_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_media_media_proto_rawDesc), len(file_media_media_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

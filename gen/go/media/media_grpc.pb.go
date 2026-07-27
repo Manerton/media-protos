@@ -20,6 +20,7 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	Media_GetUploadURL_FullMethodName = "/media.Media/GetUploadURL"
+	Media_CheckFile_FullMethodName    = "/media.Media/CheckFile"
 )
 
 // MediaClient is the client API for Media service.
@@ -27,6 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MediaClient interface {
 	GetUploadURL(ctx context.Context, in *GetURLRequest, opts ...grpc.CallOption) (*GetURLResponse, error)
+	CheckFile(ctx context.Context, in *CheckFileRequest, opts ...grpc.CallOption) (*CheckFileResponse, error)
 }
 
 type mediaClient struct {
@@ -47,11 +49,22 @@ func (c *mediaClient) GetUploadURL(ctx context.Context, in *GetURLRequest, opts 
 	return out, nil
 }
 
+func (c *mediaClient) CheckFile(ctx context.Context, in *CheckFileRequest, opts ...grpc.CallOption) (*CheckFileResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CheckFileResponse)
+	err := c.cc.Invoke(ctx, Media_CheckFile_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MediaServer is the server API for Media service.
 // All implementations must embed UnimplementedMediaServer
 // for forward compatibility.
 type MediaServer interface {
 	GetUploadURL(context.Context, *GetURLRequest) (*GetURLResponse, error)
+	CheckFile(context.Context, *CheckFileRequest) (*CheckFileResponse, error)
 	mustEmbedUnimplementedMediaServer()
 }
 
@@ -64,6 +77,9 @@ type UnimplementedMediaServer struct{}
 
 func (UnimplementedMediaServer) GetUploadURL(context.Context, *GetURLRequest) (*GetURLResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetUploadURL not implemented")
+}
+func (UnimplementedMediaServer) CheckFile(context.Context, *CheckFileRequest) (*CheckFileResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method CheckFile not implemented")
 }
 func (UnimplementedMediaServer) mustEmbedUnimplementedMediaServer() {}
 func (UnimplementedMediaServer) testEmbeddedByValue()               {}
@@ -104,6 +120,24 @@ func _Media_GetUploadURL_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Media_CheckFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckFileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MediaServer).CheckFile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Media_CheckFile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MediaServer).CheckFile(ctx, req.(*CheckFileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Media_ServiceDesc is the grpc.ServiceDesc for Media service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -114,6 +148,10 @@ var Media_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetUploadURL",
 			Handler:    _Media_GetUploadURL_Handler,
+		},
+		{
+			MethodName: "CheckFile",
+			Handler:    _Media_CheckFile_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
