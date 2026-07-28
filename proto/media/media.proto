@@ -25,8 +25,7 @@ message CheckFileRequest {
 }
 
 message CheckFileResponse {
-    bool isValid  = 1;
-    bool exist = 2;
+    bool iscorrect  = 1;
 }
 
 

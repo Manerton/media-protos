@@ -179,8 +179,7 @@ func (x *CheckFileRequest) GetType() string {
 
 type CheckFileResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	IsValid       bool                   `protobuf:"varint,1,opt,name=isValid,proto3" json:"isValid,omitempty"`
-	Exist         bool                   `protobuf:"varint,2,opt,name=exist,proto3" json:"exist,omitempty"`
+	Iscorrect     bool                   `protobuf:"varint,1,opt,name=iscorrect,proto3" json:"iscorrect,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -215,16 +214,9 @@ func (*CheckFileResponse) Descriptor() ([]byte, []int) {
 	return file_media_media_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *CheckFileResponse) GetIsValid() bool {
+func (x *CheckFileResponse) GetIscorrect() bool {
 	if x != nil {
-		return x.IsValid
-	}
-	return false
-}
-
-func (x *CheckFileResponse) GetExist() bool {
-	if x != nil {
-		return x.Exist
+		return x.Iscorrect
 	}
 	return false
 }
@@ -242,10 +234,9 @@ const file_media_media_proto_rawDesc = "" +
 	"\x04type\x18\x03 \x01(\tR\x04type\"@\n" +
 	"\x10CheckFileRequest\x12\x18\n" +
 	"\afilekey\x18\x01 \x01(\tR\afilekey\x12\x12\n" +
-	"\x04type\x18\x02 \x01(\tR\x04type\"C\n" +
-	"\x11CheckFileResponse\x12\x18\n" +
-	"\aisValid\x18\x01 \x01(\bR\aisValid\x12\x14\n" +
-	"\x05exist\x18\x02 \x01(\bR\x05exist2\x84\x01\n" +
+	"\x04type\x18\x02 \x01(\tR\x04type\"1\n" +
+	"\x11CheckFileResponse\x12\x1c\n" +
+	"\tiscorrect\x18\x01 \x01(\bR\tiscorrect2\x84\x01\n" +
 	"\x05Media\x12;\n" +
 	"\fGetUploadURL\x12\x14.media.GetURLRequest\x1a\x15.media.GetURLResponse\x12>\n" +
 	"\tCheckFile\x12\x17.media.CheckFileRequest\x1a\x18.media.CheckFileResponseB\x12Z\x10media.v1;mediav1b\x06proto3"
