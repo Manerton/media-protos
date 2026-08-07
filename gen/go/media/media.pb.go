@@ -221,6 +221,94 @@ func (x *CheckFileResponse) GetIscorrect() bool {
 	return false
 }
 
+type DeleteFileRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Key           string                 `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteFileRequest) Reset() {
+	*x = DeleteFileRequest{}
+	mi := &file_media_media_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteFileRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteFileRequest) ProtoMessage() {}
+
+func (x *DeleteFileRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_media_media_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteFileRequest.ProtoReflect.Descriptor instead.
+func (*DeleteFileRequest) Descriptor() ([]byte, []int) {
+	return file_media_media_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *DeleteFileRequest) GetKey() string {
+	if x != nil {
+		return x.Key
+	}
+	return ""
+}
+
+type DeleteFileResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Iscorrent     bool                   `protobuf:"varint,1,opt,name=iscorrent,proto3" json:"iscorrent,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteFileResponse) Reset() {
+	*x = DeleteFileResponse{}
+	mi := &file_media_media_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteFileResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteFileResponse) ProtoMessage() {}
+
+func (x *DeleteFileResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_media_media_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteFileResponse.ProtoReflect.Descriptor instead.
+func (*DeleteFileResponse) Descriptor() ([]byte, []int) {
+	return file_media_media_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *DeleteFileResponse) GetIscorrent() bool {
+	if x != nil {
+		return x.Iscorrent
+	}
+	return false
+}
+
 var File_media_media_proto protoreflect.FileDescriptor
 
 const file_media_media_proto_rawDesc = "" +
@@ -236,10 +324,16 @@ const file_media_media_proto_rawDesc = "" +
 	"\afilekey\x18\x01 \x01(\tR\afilekey\x12\x12\n" +
 	"\x04type\x18\x02 \x01(\tR\x04type\"1\n" +
 	"\x11CheckFileResponse\x12\x1c\n" +
-	"\tiscorrect\x18\x01 \x01(\bR\tiscorrect2\x84\x01\n" +
+	"\tiscorrect\x18\x01 \x01(\bR\tiscorrect\"%\n" +
+	"\x11DeleteFileRequest\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\"2\n" +
+	"\x12DeleteFileResponse\x12\x1c\n" +
+	"\tiscorrent\x18\x01 \x01(\bR\tiscorrent2\xc7\x01\n" +
 	"\x05Media\x12;\n" +
 	"\fGetUploadURL\x12\x14.media.GetURLRequest\x1a\x15.media.GetURLResponse\x12>\n" +
-	"\tCheckFile\x12\x17.media.CheckFileRequest\x1a\x18.media.CheckFileResponseB\x12Z\x10media.v1;mediav1b\x06proto3"
+	"\tCheckFile\x12\x17.media.CheckFileRequest\x1a\x18.media.CheckFileResponse\x12A\n" +
+	"\n" +
+	"DeleteFile\x12\x18.media.DeleteFileRequest\x1a\x19.media.DeleteFileResponseB\x12Z\x10media.v1;mediav1b\x06proto3"
 
 var (
 	file_media_media_proto_rawDescOnce sync.Once
@@ -253,20 +347,24 @@ func file_media_media_proto_rawDescGZIP() []byte {
 	return file_media_media_proto_rawDescData
 }
 
-var file_media_media_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_media_media_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_media_media_proto_goTypes = []any{
-	(*GetURLRequest)(nil),     // 0: media.GetURLRequest
-	(*GetURLResponse)(nil),    // 1: media.GetURLResponse
-	(*CheckFileRequest)(nil),  // 2: media.CheckFileRequest
-	(*CheckFileResponse)(nil), // 3: media.CheckFileResponse
+	(*GetURLRequest)(nil),      // 0: media.GetURLRequest
+	(*GetURLResponse)(nil),     // 1: media.GetURLResponse
+	(*CheckFileRequest)(nil),   // 2: media.CheckFileRequest
+	(*CheckFileResponse)(nil),  // 3: media.CheckFileResponse
+	(*DeleteFileRequest)(nil),  // 4: media.DeleteFileRequest
+	(*DeleteFileResponse)(nil), // 5: media.DeleteFileResponse
 }
 var file_media_media_proto_depIdxs = []int32{
 	0, // 0: media.Media.GetUploadURL:input_type -> media.GetURLRequest
 	2, // 1: media.Media.CheckFile:input_type -> media.CheckFileRequest
-	1, // 2: media.Media.GetUploadURL:output_type -> media.GetURLResponse
-	3, // 3: media.Media.CheckFile:output_type -> media.CheckFileResponse
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
+	4, // 2: media.Media.DeleteFile:input_type -> media.DeleteFileRequest
+	1, // 3: media.Media.GetUploadURL:output_type -> media.GetURLResponse
+	3, // 4: media.Media.CheckFile:output_type -> media.CheckFileResponse
+	5, // 5: media.Media.DeleteFile:output_type -> media.DeleteFileResponse
+	3, // [3:6] is the sub-list for method output_type
+	0, // [0:3] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -283,7 +381,7 @@ func file_media_media_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_media_media_proto_rawDesc), len(file_media_media_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -7,6 +7,7 @@ option go_package = "media.v1;mediav1";
 service Media {
     rpc GetUploadURL (GetURLRequest) returns (GetURLResponse);
     rpc CheckFile (CheckFileRequest) returns (CheckFileResponse);
+    rpc DeleteFile (DeleteFileRequest) returns (DeleteFileResponse);
 }
 
 message GetURLRequest {
@@ -28,4 +29,10 @@ message CheckFileResponse {
     bool iscorrect  = 1;
 }
 
+message DeleteFileRequest {
+    string key = 1;
+}
 
+message DeleteFileResponse {
+    bool iscorrent = 1;
+}
