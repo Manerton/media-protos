@@ -2,12 +2,14 @@ syntax = "proto3";
 
 package media;
 
+import "google/protobuf/empty.proto";
+
 option go_package = "media.v1;mediav1";
 
 service Media {
     rpc GetUploadURL (GetURLRequest) returns (GetURLResponse);
     rpc CheckFile (CheckFileRequest) returns (CheckFileResponse);
-    rpc DeleteFile (DeleteFileRequest) returns (DeleteFileResponse);
+    rpc DeleteFile (DeleteFileRequest) returns (google.protobuf.Empty);
 }
 
 message GetURLRequest {
@@ -31,8 +33,4 @@ message CheckFileResponse {
 
 message DeleteFileRequest {
     string key = 1;
-}
-
-message DeleteFileResponse {
-    bool iscorrent = 1;
 }

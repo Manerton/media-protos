@@ -11,6 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -30,7 +31,7 @@ const (
 type MediaClient interface {
 	GetUploadURL(ctx context.Context, in *GetURLRequest, opts ...grpc.CallOption) (*GetURLResponse, error)
 	CheckFile(ctx context.Context, in *CheckFileRequest, opts ...grpc.CallOption) (*CheckFileResponse, error)
-	DeleteFile(ctx context.Context, in *DeleteFileRequest, opts ...grpc.CallOption) (*DeleteFileResponse, error)
+	DeleteFile(ctx context.Context, in *DeleteFileRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type mediaClient struct {
@@ -61,9 +62,9 @@ func (c *mediaClient) CheckFile(ctx context.Context, in *CheckFileRequest, opts 
 	return out, nil
 }
 
-func (c *mediaClient) DeleteFile(ctx context.Context, in *DeleteFileRequest, opts ...grpc.CallOption) (*DeleteFileResponse, error) {
+func (c *mediaClient) DeleteFile(ctx context.Context, in *DeleteFileRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DeleteFileResponse)
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, Media_DeleteFile_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -77,7 +78,7 @@ func (c *mediaClient) DeleteFile(ctx context.Context, in *DeleteFileRequest, opt
 type MediaServer interface {
 	GetUploadURL(context.Context, *GetURLRequest) (*GetURLResponse, error)
 	CheckFile(context.Context, *CheckFileRequest) (*CheckFileResponse, error)
-	DeleteFile(context.Context, *DeleteFileRequest) (*DeleteFileResponse, error)
+	DeleteFile(context.Context, *DeleteFileRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedMediaServer()
 }
 
@@ -94,7 +95,7 @@ func (UnimplementedMediaServer) GetUploadURL(context.Context, *GetURLRequest) (*
 func (UnimplementedMediaServer) CheckFile(context.Context, *CheckFileRequest) (*CheckFileResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method CheckFile not implemented")
 }
-func (UnimplementedMediaServer) DeleteFile(context.Context, *DeleteFileRequest) (*DeleteFileResponse, error) {
+func (UnimplementedMediaServer) DeleteFile(context.Context, *DeleteFileRequest) (*emptypb.Empty, error) {
 	return nil, status.Error(codes.Unimplemented, "method DeleteFile not implemented")
 }
 func (UnimplementedMediaServer) mustEmbedUnimplementedMediaServer() {}
