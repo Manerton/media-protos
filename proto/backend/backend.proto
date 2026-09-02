@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package backend;
+
+import "google/protobuf/empty.proto";
+
+option go_package = "backend.v1;backendv1";
+
+service Backend {
+    rpc CompleteFileProcessing (CompleteFileProcessingRequest) returns (google.protobuf.Empty);
+}
+
+enum FileStatus {
+    FILE_STATUS_UNSPECIFIED = 0;
+    FILE_STATUS_APPROVED = 1;
+    FILE_STATUS_FAILED = 2;
+}
+
+message CompleteFileProcessingRequest {
+    string file_id = 1;
+    string newKey = 2;
+    FileStatus status = 3;
+    optional string error_message = 4;
+}

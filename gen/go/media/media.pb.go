@@ -25,6 +25,7 @@ const (
 type GetURLRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Filename      string                 `protobuf:"bytes,1,opt,name=filename,proto3" json:"filename,omitempty"`
+	Visible       bool                   `protobuf:"varint,2,opt,name=visible,proto3" json:"visible,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -64,6 +65,13 @@ func (x *GetURLRequest) GetFilename() string {
 		return x.Filename
 	}
 	return ""
+}
+
+func (x *GetURLRequest) GetVisible() bool {
+	if x != nil {
+		return x.Visible
+	}
+	return false
 }
 
 type GetURLResponse struct {
@@ -225,6 +233,7 @@ func (x *CheckFileResponse) GetIscorrect() bool {
 type DeleteFileRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Key           string                 `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+	Visible       bool                   `protobuf:"varint,2,opt,name=visible,proto3" json:"visible,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -266,13 +275,21 @@ func (x *DeleteFileRequest) GetKey() string {
 	return ""
 }
 
+func (x *DeleteFileRequest) GetVisible() bool {
+	if x != nil {
+		return x.Visible
+	}
+	return false
+}
+
 var File_media_media_proto protoreflect.FileDescriptor
 
 const file_media_media_proto_rawDesc = "" +
 	"\n" +
-	"\x11media/media.proto\x12\x05media\x1a\x1bgoogle/protobuf/empty.proto\"+\n" +
+	"\x11media/media.proto\x12\x05media\x1a\x1bgoogle/protobuf/empty.proto\"E\n" +
 	"\rGetURLRequest\x12\x1a\n" +
-	"\bfilename\x18\x01 \x01(\tR\bfilename\"P\n" +
+	"\bfilename\x18\x01 \x01(\tR\bfilename\x12\x18\n" +
+	"\avisible\x18\x02 \x01(\bR\avisible\"P\n" +
 	"\x0eGetURLResponse\x12\x10\n" +
 	"\x03url\x18\x01 \x01(\tR\x03url\x12\x18\n" +
 	"\afilekey\x18\x02 \x01(\tR\afilekey\x12\x12\n" +
@@ -281,9 +298,10 @@ const file_media_media_proto_rawDesc = "" +
 	"\afilekey\x18\x01 \x01(\tR\afilekey\x12\x12\n" +
 	"\x04type\x18\x02 \x01(\tR\x04type\"1\n" +
 	"\x11CheckFileResponse\x12\x1c\n" +
-	"\tiscorrect\x18\x01 \x01(\bR\tiscorrect\"%\n" +
+	"\tiscorrect\x18\x01 \x01(\bR\tiscorrect\"?\n" +
 	"\x11DeleteFileRequest\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key2\xc4\x01\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x18\n" +
+	"\avisible\x18\x02 \x01(\bR\avisible2\xc4\x01\n" +
 	"\x05Media\x12;\n" +
 	"\fGetUploadURL\x12\x14.media.GetURLRequest\x1a\x15.media.GetURLResponse\x12>\n" +
 	"\tCheckFile\x12\x17.media.CheckFileRequest\x1a\x18.media.CheckFileResponse\x12>\n" +

@@ -7,3 +7,4 @@ tasks:
     desc: "Generate code fom proto files"
     cmds: 
       - protoc -I proto proto/media/media.proto --go_out=./gen/go --go_opt=paths=source_relative --go-grpc_out=./gen/go/ --go-grpc_opt=paths=source_relative
+      - protoc -I proto proto/backend/backend.proto --go_out=./gen/go --go_opt=paths=source_relative --go-grpc_out=./gen/go/ --go-grpc_opt=paths=source_relative

@@ -14,6 +14,7 @@ service Media {
 
 message GetURLRequest {
   string filename = 1;
+  bool visible = 2;
 }
 
 message GetURLResponse {
@@ -33,4 +34,5 @@ message CheckFileResponse {
 
 message DeleteFileRequest {
     string key = 1;
+    bool visible = 2;
 }
