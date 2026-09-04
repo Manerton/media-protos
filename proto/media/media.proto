@@ -8,7 +8,6 @@ option go_package = "media.v1;mediav1";
 
 service Media {
     rpc GetUploadURL (GetURLRequest) returns (GetURLResponse);
-    rpc CheckFile (CheckFileRequest) returns (CheckFileResponse);
     rpc DeleteFile (DeleteFileRequest) returns (google.protobuf.Empty);
 }
 
@@ -21,15 +20,6 @@ message GetURLResponse {
     string url = 1;
     string filekey = 2;
     string type = 3;
-}
-
-message CheckFileRequest {
-    string filekey = 1;
-    string type = 2;
-}
-
-message CheckFileResponse {
-    bool iscorrect  = 1;
 }
 
 message DeleteFileRequest {
