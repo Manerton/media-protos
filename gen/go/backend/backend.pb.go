@@ -77,6 +77,7 @@ type CompleteFileProcessingRequest struct {
 	NewKey        string                 `protobuf:"bytes,2,opt,name=newKey,proto3" json:"newKey,omitempty"`
 	Status        FileStatus             `protobuf:"varint,3,opt,name=status,proto3,enum=backend.FileStatus" json:"status,omitempty"`
 	ErrorMessage  *string                `protobuf:"bytes,4,opt,name=error_message,json=errorMessage,proto3,oneof" json:"error_message,omitempty"`
+	SizeBytes     int64                  `protobuf:"varint,5,opt,name=size_bytes,json=sizeBytes,proto3" json:"size_bytes,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -139,16 +140,25 @@ func (x *CompleteFileProcessingRequest) GetErrorMessage() string {
 	return ""
 }
 
+func (x *CompleteFileProcessingRequest) GetSizeBytes() int64 {
+	if x != nil {
+		return x.SizeBytes
+	}
+	return 0
+}
+
 var File_backend_backend_proto protoreflect.FileDescriptor
 
 const file_backend_backend_proto_rawDesc = "" +
 	"\n" +
-	"\x15backend/backend.proto\x12\abackend\x1a\x1bgoogle/protobuf/empty.proto\"\xb9\x01\n" +
+	"\x15backend/backend.proto\x12\abackend\x1a\x1bgoogle/protobuf/empty.proto\"\xd8\x01\n" +
 	"\x1dCompleteFileProcessingRequest\x12\x17\n" +
 	"\afile_id\x18\x01 \x01(\tR\x06fileId\x12\x16\n" +
 	"\x06newKey\x18\x02 \x01(\tR\x06newKey\x12+\n" +
 	"\x06status\x18\x03 \x01(\x0e2\x13.backend.FileStatusR\x06status\x12(\n" +
-	"\rerror_message\x18\x04 \x01(\tH\x00R\ferrorMessage\x88\x01\x01B\x10\n" +
+	"\rerror_message\x18\x04 \x01(\tH\x00R\ferrorMessage\x88\x01\x01\x12\x1d\n" +
+	"\n" +
+	"size_bytes\x18\x05 \x01(\x03R\tsizeBytesB\x10\n" +
 	"\x0e_error_message*[\n" +
 	"\n" +
 	"FileStatus\x12\x1b\n" +
